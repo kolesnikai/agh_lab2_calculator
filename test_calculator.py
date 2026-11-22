@@ -37,8 +37,10 @@ def test_divide():
 
     assert kalkulator.divide() == 5.0
 
-def test_divide_zero():
-    kalkulator= Calculator(5.0,0.0)
-    assert isnan(kalkulator.divide())
+def test_divide_zero(capsys):
+    kalkulator = Calculator(5.0, 0.0)
 
+    wynik = kalkulator.divide()
 
+    assert wynik is None
+    assert "nie wolno dzielic przez zero" in capsys.readouterr().out
